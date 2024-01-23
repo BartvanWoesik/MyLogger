@@ -12,7 +12,7 @@ def setup_logging(config_name : str = 'base.json') ->logging.Logger:
 
     Args:
         config_name (str): Name of the json config file.
-    
+       
     """
 
     config_path = pathlib.Path(CONFIG_FOLDER + config_name)
