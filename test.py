@@ -24,8 +24,8 @@ def test_setup_logging_nonexistent_config(caplog, tmp_path):
 def test_available_config(capfd):
     """See if all available config files are shown."""
     expected_output = (
-        "base.json\n"
-    )  # Add other expected config file names if applicable
+        "base.json\n"  # Add other expected config file names if applicable
+    )
     available_config()
     captured = capfd.readouterr()
     assert captured.out == expected_output
