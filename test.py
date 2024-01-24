@@ -1,8 +1,8 @@
 import logging
 import logging.config
 import json
-import MyLogger  # Replace "your_module" with the actual module name
-from MyLogger.custom_logger import setup_logging, available_config
+import my_logger 
+from my_logger.custom_logger import setup_logging, available_config
 import pytest
 
 CONFIG_FOLDER = "log_config/"
