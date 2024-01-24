@@ -4,7 +4,9 @@ import json
 import pathlib
 import os
 
-CONFIG_FOLDER = "MyLogger/log_config/"
+
+CURRENT_LOCATION = os.path.abspath(__file__)
+CONFIG_FOLDER = os.path.dirname(CURRENT_LOCATION) + "\log_config\\"
 
 
 def setup_logging(config_name: str = "base.json") -> logging.Logger:
@@ -17,7 +19,7 @@ def setup_logging(config_name: str = "base.json") -> logging.Logger:
     """
 
     config_path = pathlib.Path(CONFIG_FOLDER + config_name)
-
+    print(config_path)
     if not config_path.exists():
         raise FileNotFoundError(
             f"The specified config file '{config_name}' does not exist. "

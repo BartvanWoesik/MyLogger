@@ -4,29 +4,38 @@ import json
 import pathlib
 import os
 
-CONFIG_FOLDER = "MyLogger/log_config/"
 
-def setup_logging(config_name : str = 'base.json') ->logging.Logger:
-    """ 
+CURRENT_LOCATION = os.path.abspath(__file__)
+CONFIG_FOLDER = os.path.dirname(CURRENT_LOCATION) + "\log_config\\"
+
+
+def setup_logging(config_name: str = "base.json") -> logging.Logger:
+    """
     Create custom logger child based on provided config.
 
     Args:
         config_name (str): Name of the json config file.
-    
+
     """
 
     config_path = pathlib.Path(CONFIG_FOLDER + config_name)
-    if config_path.exists():
-        with open(config_path) as cf:
-            config = json.load(cf)
-    else: 
-        print(f"The specified configfile: {config_name}, does not exists. run custom_logger.available_config to find the available config files.")
+    print(config_path)
+    if not config_path.exists():
+        raise FileNotFoundError(
+            f"The specified config file '{config_name}' does not exist. "
+            f"Run custom_logger.available_config to find the available config files."
+        )
+
+    with open(config_path) as cf:
+        config = json.load(cf)
+
     # Set config for logging
     logging.config.dictConfig(config)
 
-    # Create logger that is not root logger. 
+    # Create logger that is not root logger.
     logger = logging.getLogger(__name__)
     return logger
+
 
 def available_config():
     """Print out the available config files in project."""

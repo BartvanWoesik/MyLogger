@@ -13,6 +13,8 @@ setup(
             "your_project_name = your_module:main",  # Replace 'your_module' and 'main' with your actual module and entry point
         ],
     },
+    package_data={"my_logger": ["log_config/*.json"]},
+    include_package_data=True,
     author="Your Name",
     author_email="your.email@example.com",
     description="Description of your project",

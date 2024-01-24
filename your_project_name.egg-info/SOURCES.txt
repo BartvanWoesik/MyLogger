@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+my_logger/__init__.py
+my_logger/custom_logger.py
+my_logger/log_config/base.json
+your_project_name.egg-info/PKG-INFO
+your_project_name.egg-info/SOURCES.txt
+your_project_name.egg-info/dependency_links.txt
+your_project_name.egg-info/entry_points.txt
+your_project_name.egg-info/top_level.txt
