@@ -1,6 +1,6 @@
 import logging
 import logging.config
-from my_logger.custom_logger import setup_logging, available_config
+from my_logger.custom_logger import logger, available_config
 import pytest
 
 CONFIG_FOLDER = "log_config/"
@@ -8,7 +8,6 @@ CONFIG_FOLDER = "log_config/"
 
 def test_setup_logging_existing_config():
     """Check if logger is created succesfully."""
-    logger = setup_logging("base.json")
     assert isinstance(logger, logging.Logger)
 
 
@@ -18,7 +17,7 @@ def test_setup_logging_nonexistent_config(caplog, tmp_path):
         FileNotFoundError,
         match="The specified config file 'nonexistent_config.json' does not exist.",
     ):
-        setup_logging("nonexistent_config.json")
+        logger.setup_logging("nonexistent_config.json")
 
 
 def test_available_config(capfd):

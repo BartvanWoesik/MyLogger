@@ -2,20 +2,28 @@
     "version": 1,
     "disable_existing_loggers": false,
     "formatters": {
-      "simple": {
-        "format": "%(levelname)s: %(message)s"
+      "colored": {
+          "()": "colorlog.ColoredFormatter",
+          "format": "%(log_color)s%(levelname)s | %(filename)s: %(message)s",
+          "log_colors": {
+              "DEBUG": "yellow",
+              "INFO": "green",
+              "WARNING": "purple",
+              "ERROR": "red",
+              "CRITICAL": "white,bg_red"
+          }
       }
     },
     "handlers": {
       "stdout": {
         "class": "logging.StreamHandler",
-        "formatter": "simple",
+        "formatter": "colored",
         "stream": "ext://sys.stdout"
       }
     },
     "loggers": {
       "root": {
-        "level": "DEBUG",
+        "level": "INFO",
         "handlers": [
           "stdout"
         ]
