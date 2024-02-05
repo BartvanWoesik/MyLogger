@@ -1,17 +1,17 @@
 import logging
 import logging.config
-import json
+import yaml
 import pathlib
 import os
 
 
 CURRENT_LOCATION = os.path.abspath(__file__)
-CONFIG_FOLDER = os.path.dirname(CURRENT_LOCATION) + "/log_config/"
+CONFIG_FOLDER = os.path.dirname(CURRENT_LOCATION) + "\\log_config\\"
 
 
 class MyLogger(logging.Logger):
     @classmethod
-    def setup_logging(cls, config_name: str = "base.json") -> logging.Logger:
+    def setup_logging(cls, config_name: str = "base.yaml") -> logging.Logger:
         """
         Create custom logger child based on provided config.
 
@@ -28,7 +28,7 @@ class MyLogger(logging.Logger):
             )
 
         with open(config_path) as cf:
-            config = json.load(cf)
+            config = yaml.load(cf, Loader=yaml.FullLoader)
 
         logging.setLoggerClass(cls)
         # Set config for logging

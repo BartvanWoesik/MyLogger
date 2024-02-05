@@ -2,3 +2,4 @@ __pycache__
 .pytest_cache
 MyLogger/__pycache__
 .ruff_cache
+*.egg-info

@@ -1,2 +1,0 @@
-[console_scripts]
-your_project_name = your_module:main
