@@ -10,13 +10,13 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "your_project_name = your_module:main",  # Replace 'your_module' and 'main' with your actual module and entry point
+            "my_logger = my_logger:custom_logger",  # Replace 'your_module' and 'main' with your actual module and entry point
         ],
     },
     package_data={"my_logger": ["log_config/*.json"]},
     include_package_data=True,
-    author="Your Name",
-    author_email="your.email@example.com",
-    description="Description of your project",
-    url="https://github.com/your_username/your_project_name",
+    author="Bart van Woesik",
+    author_email="bartwoesik1@gmail.com",
+    description="Custom Logger that can be used in private projects for consistency",
+    url="https://github.com/BartvanWoesik/MyLogger",
 )
