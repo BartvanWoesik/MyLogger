@@ -4,7 +4,6 @@ import yaml
 import pathlib
 import os
 
-
 CURRENT_LOCATION = os.path.abspath(__file__)
 CONFIG_FOLDER = os.path.dirname(CURRENT_LOCATION) + "\\log_config\\"
 
@@ -39,17 +38,15 @@ class MyLogger(logging.Logger):
         return logger
 
 
-def available_config():
+def Available_config():
     """Print out the available config files in project."""
     for file in os.listdir(CONFIG_FOLDER):
         print(file)
 
 
 def main():
-    available_config()
-    logging.setLoggerClass(MyLogger)
-    logger = logging.getLogger(__name__)
-    logger = logger.setup_logging()
+    Available_config()
+
     logger.debug("debug message", extra={"x": "hello"})
     logger.info("info message")
     logger.warning("warning message")
@@ -61,10 +58,10 @@ def main():
         logger.exception("exception message")
 
 
-if __name__ == "__main__":
-    main()
-
 # Create logger that can be imported
 logging.setLoggerClass(MyLogger)
 logger = logging.getLogger(__name__)
 logger = logger.setup_logging()
+
+if __name__ == "__main__":
+    main()
