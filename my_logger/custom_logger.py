@@ -38,14 +38,14 @@ class MyLogger(logging.Logger):
         return logger
 
 
-def Available_config():
+def available_config():
     """Print out the available config files in project."""
     for file in os.listdir(CONFIG_FOLDER):
         print(file)
 
 
 def main():
-    Available_config()
+    available_config()
 
     logger.debug("debug message", extra={"x": "hello"})
     logger.info("info message")
