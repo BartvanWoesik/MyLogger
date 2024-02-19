@@ -44,6 +44,13 @@ def available_config():
         print(file)
 
 
+# Create logger that can be imported
+logging.setLoggerClass(MyLogger)
+logger = logging.getLogger(__name__)
+logger = logger.setup_logging()
+logger.info("Logger is set up.")
+
+
 def main():
     available_config()
 
@@ -57,11 +64,6 @@ def main():
     except ZeroDivisionError:
         logger.exception("exception message")
 
-
-# Create logger that can be imported
-logging.setLoggerClass(MyLogger)
-logger = logging.getLogger(__name__)
-logger = logger.setup_logging()
 
 if __name__ == "__main__":
     main()
