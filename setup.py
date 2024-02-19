@@ -13,7 +13,7 @@ setup(
             "my_logger = my_logger:custom_logger",  # Replace 'your_module' and 'main' with your actual module and entry point
         ],
     },
-    package_data={"my_logger": ["log_config/*.json"]},
+    package_data={"my_logger": ["log_config/*.json", "log_config/*.yaml"]},
     include_package_data=True,
     author="Bart van Woesik",
     author_email="bartwoesik1@gmail.com",
