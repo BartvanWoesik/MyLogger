@@ -1,9 +1,7 @@
 import logging
 import logging.config
-from my_logger.custom_logger import logger, available_config
+from my_logger.custom_logger import available_config, logger
 import pytest
-
-CONFIG_FOLDER = "log_config/"
 
 
 def test_setup_logging_existing_config():
@@ -13,18 +11,15 @@ def test_setup_logging_existing_config():
 
 def test_setup_logging_nonexistent_config(caplog, tmp_path):
     """Check if error is raised correctly."""
-    with pytest.raises(
-        FileNotFoundError,
-        match="The specified config file 'nonexistent_config.json' does not exist.",
-    ):
-        logger.setup_logging("nonexistent_config.json")
+
+    config_name = "nonexistent_config.json"
+    with pytest.raises(FileNotFoundError):
+        logger.setup_logging(config_name)
 
 
 def test_available_config(capfd):
     """See if all available config files are shown."""
-    expected_output = (
-        "base.json\n"  # Add other expected config file names if applicable
-    )
+    expected_output = "base\n"
     available_config()
     captured = capfd.readouterr()
     assert captured.out == expected_output

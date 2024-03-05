@@ -1,16 +1,12 @@
 import logging
 import logging.config
-import yaml
-import pathlib
-import os
 
-CURRENT_LOCATION = os.path.abspath(__file__)
-CONFIG_FOLDER = os.path.dirname(CURRENT_LOCATION) + "\\log_config\\"
+from my_logger.base import Loggers
 
 
 class MyLogger(logging.Logger):
     @classmethod
-    def setup_logging(cls, config_name: str = "base.yaml") -> logging.Logger:
+    def setup_logging(cls, config_name: str = "base") -> logging.Logger:
         """
         Create custom logger child based on provided config.
 
@@ -19,19 +15,14 @@ class MyLogger(logging.Logger):
 
         """
 
-        config_path = pathlib.Path(CONFIG_FOLDER + config_name)
-        if not config_path.exists():
+        if config_name not in list(Loggers.keys()):
             raise FileNotFoundError(
-                f"The specified config file '{config_name}' does not exist. "
-                f"Run custom_logger.available_config to find the available config files."
+                f"The specified config file '{config_name}' does not exist. Run custom_logger.available_config to find the available config files."
             )
-
-        with open(config_path) as cf:
-            config = yaml.load(cf, Loader=yaml.FullLoader)
 
         logging.setLoggerClass(cls)
         # Set config for logging
-        logging.config.dictConfig(config)
+        logging.config.dictConfig(Loggers[config_name])
 
         # Create logger that is not root logger.
         logger = logging.getLogger(__name__)
@@ -40,7 +31,7 @@ class MyLogger(logging.Logger):
 
 def available_config():
     """Print out the available config files in project."""
-    for file in os.listdir(CONFIG_FOLDER):
+    for file in list(Loggers.keys()):
         print(file)
 
 
